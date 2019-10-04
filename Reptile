@@ -1,0 +1,66 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Sep 30 16:13:05 2019
+爬取京东页面
+try:
+
+import requests
+url = "https://item.jd.com/100002716269.html"
+try:
+    r = requests.get(url)
+    r.raise_for_status()
+    r.encoding = r.apparent_encoding
+    print r.text[:1000]
+except:
+    print "读取失败"
+    
+    
+@author: rui
+"""
+"""
+import requests
+url2 = "https://www.douban.com/group/topic/128411547/"
+d = requests.get(url2)
+d.raise_for_status()
+d.encoding = d.apparent_encoding
+print d.text[:1000]
+"""
+"""
+import requests
+url3 = "https://www.amazon.cn/dp/B016XJW9EG/"
+kv = {'user-agent':'Mozilla/5.0'}
+
+y = requests.get(url3,headers = kv)
+y.raise_for_status()
+y.encoding = y.apparent_encoding
+
+print y.text[:2000]
+"""
+"""
+import requests
+kv = {'wd':'python'}
+url4 = 'http://www.baidu.com/s'
+r = requests.get(url4,params = kv)
+print r.status_code,r.request.url
+print len(r.text)
+print r.text
+"""
+
+import requests
+import os
+url5 = "http://space.lamost.org/solar/earth/images/globe.jpg"
+root = "D:\pycharmache\\"
+path = root + url5.split('/')[-1]
+try:
+    if not os.path.exists(root):
+        os.mikdir(root)
+    if not os.path.exists(path):
+        r = requests.get(url5)
+        with open(path,'wb') as f:
+            f.write(r.content)
+            f.close
+            print '文件保存成功'
+    else:
+        print '文件已经存在'
+except:
+    print '爬取失败'
